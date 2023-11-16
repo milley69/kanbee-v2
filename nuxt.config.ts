@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import fs from 'fs'
-import path from 'path'
+// import fs from 'fs'
+// import path from 'path'
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
@@ -47,10 +47,10 @@ export default defineNuxtConfig({
     transpile: ['@vuepic/vue-datepicker'],
   },
   extensions: ['.ts', '.vue', '.js'],
-  devServer: {
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, '.https/localhost-key.pem')).toString(),
-      cert: fs.readFileSync(path.resolve(__dirname, '.https/localhost.pem')).toString(),
-    },
-  },
+  // devServer: {
+  //   https: {
+  //     key: fs.readFileSync(path.resolve(__dirname, '.https/localhost-key.pem')).toString(),
+  //     cert: fs.readFileSync(path.resolve(__dirname, '.https/localhost.pem')).toString(),
+  //   },
+  // },
 })
