@@ -46,6 +46,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ['@vuepic/vue-datepicker'],
   },
+  extensions: ['.ts', '.vue', '.js'],
   devServer: {
     https: {
       key: fs.readFileSync(path.resolve(__dirname, '.https/localhost-key.pem')).toString(),

@@ -45,6 +45,6 @@
     "socket.io-client": "^4.7.2",
     "valibot": "^0.20.1",
     "vue-advanced-cropper": "^2.8.8",
-    "vuedraggable": "^2.24.3"
+    "vuedraggable": "^4.1.0"
   }
 }
