@@ -1,4 +1,4 @@
-import type { User, UserPinia, authStatus } from '@/types'
+import { Roles, type User, type UserPinia, type authStatus } from '@/types'
 import { defineStore } from 'pinia'
 
 export const useUser = defineStore('UserPinia', {
@@ -15,6 +15,9 @@ export const useUser = defineStore('UserPinia', {
   getters: {
     isAuth({ status, accessToken }): boolean {
       return accessToken.length > 0
+    },
+    isAdmin({ user }): boolean {
+      return user ? user.roles.includes(Roles.ADMIN) : false
     },
   },
   actions: {

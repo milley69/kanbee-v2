@@ -1,35 +1,26 @@
-import type { DoneError, Invites, Members, Project, User, UserError, UserProject } from '@/types'
+import type { Invites, Members, Project, User, UserProject } from '@/types'
 import { storeToRefs } from 'pinia'
 
 export const useProjects = () => {
   const { user, accessToken } = storeToRefs(useUser())
   // const { projects, refreshedCount } = storeToRefs(useProjectsStore())
   const { setUser } = useUser()
-  const { addProject, getProject } = useProjectsStore()
+  const { addProject, getProject, removeProject } = useProjectsStore()
   const { $URL } = useNuxtApp()
   const { setToast } = useToast()
   const { socket } = storeToRefs(useSocket())
 
-  const createProject = async (name: string) => {
+  const createProject = async (title: string) => {
     if (!user.value) return
 
-    const { user: newUser, project } = await $fetch<UserProject>(`${$URL}/projects/create`, {
-      method: 'POST',
-      credentials: 'include',
-      mode: 'cors',
-      body: JSON.stringify({ title: name.replace('/', '') }),
-      headers: { Authorization: accessToken.value },
+    const data: UserProject = await socket.value?.emitWithAck('createProject', {
+      title: title.replace('/', ''),
+      user: user.value,
     })
-    if (!(project && newUser)) return
-    setUser(newUser)
-    addProject(project)
+    if (!data) return
+    setUser(data.user)
+    return data.project
   }
-
-  // const getProjectById = async (id: number) => {
-  //   const { data, error } = await $supabase.from('projects').select('*').eq('id', id).limit(1).single()
-  //   if (error) return null
-  //   return data
-  // }
 
   const initProjects = async (refresh = false) => {
     if (!user.value) return
@@ -53,73 +44,89 @@ export const useProjects = () => {
   }
 
   const updateProject = async (project: Project) => {
-    socket.value?.emit('updateKanban', project)
+    socket.value?.emit('updateProject', project)
   }
 
   const inviteUser = async (email: string, title: string) => {
     const project = getProject(title)
     if (!project) return
-    const data = await $fetch<DoneError>(`${$URL}/projects/send-invite/`, {
-      method: 'POST',
-      credentials: 'include',
-      mode: 'cors',
-      body: { id: project.id, title, email },
-      headers: { Authorization: accessToken.value },
-    })
-    if (data.error) {
-      setToast('error', data.error)
-      return
-    }
+    socket.value?.emit('sendInvite', { id: project.id, title, email })
+
     setToast('success', `${email} was invited to ${title}`)
   }
 
+  const exileUser = async (project: Project, user: User) => {
+    socket.value?.emit('exileUser', { project, userId: user.id })
+    setToast('success', `${user.email} was expelled from ${project.title}`)
+  }
+
   const acceptInvite = async (invite: Invites) => {
-    const { user: newUser, project } = await $fetch<UserProject>(`${$URL}/projects/access-invite/${invite.id}`, {
-      method: 'POST',
-      credentials: 'include',
-      mode: 'cors',
-      headers: { Authorization: accessToken.value },
-    })
-    if (!(project && newUser)) return
-    setUser(newUser)
-    addProject(project)
-  }
-
-  const ignoreInvite = async (invite: Invites) => {
-    const { user, error } = await $fetch<UserError>(`${$URL}/projects/ignore-invite/${invite.id}`, {
-      method: 'POST',
-      credentials: 'include',
-      mode: 'cors',
-      headers: { Authorization: accessToken.value },
-    })
-    if (!user) {
-      console.log('error: ', error)
-      return
-    }
-    setUser(user)
-  }
-
-  const WSProject = (_user: User) => {
-    socket.value?.on(`getInvite-${_user.id}`, (data: Invites) => {
-      console.log('data: ', data)
-      user.value?.invites.push(data)
-    })
-
-    for (const projectId of _user.projectsId) {
-      socket.value?.on(`updateKanban:${projectId}`, (data: Project) => {
+    const data: UserProject = await socket.value?.emitWithAck('accessInvite', { ...invite, email: user.value?.email })
+    if (data) {
+      setUser(data.user)
+      addProject(data.project, true)
+      setToast('success', `Welcome to ${data.project.title}`)
+      socket.value?.on(`updateProject:${data.project.id}`, (data: Project) => {
         addProject(data, true)
       })
     }
   }
 
+  const ignoreInvite = async (invite: Invites) => {
+    const data: User = await socket.value?.emitWithAck('ignoreInvite', { ...invite, email: user.value?.email })
+    if (data) setUser(data)
+  }
+  const acceptExclusion = async (title: string) => {
+    const data: User = await socket.value?.emitWithAck('acceptExclusion', { title, userId: user.value?.id })
+    if (data) setUser(data)
+  }
+
+  const deleteProject = async (title: string) => {
+    const project = getProject(title)
+    socket.value?.emit('deleteProject', project)
+  }
+  const leaveProject = async (title: string) => {
+    const project = getProject(title)
+    socket.value?.emit('leaveProject', { project, user: user.value })
+    setToast('info', `Вы покинули ${title}`)
+  }
+
+  const WSProject = (_user: User) => {
+    socket.value?.on(`getInvite:${_user.id}`, (user: User) => {
+      if (user) setUser(user)
+    })
+
+    socket.value?.on(`exileUser:${_user.id}`, (data: UserProject) => {
+      const { project, user } = data
+      setUser(user)
+      removeProject(project)
+    })
+
+    for (const projectId of _user.projectsId) {
+      socket.value?.on(`updateProject:${projectId}`, (project: Project) => {
+        addProject(project, true)
+      })
+
+      socket.value?.on(`deleteProject:${projectId}`, (project: Project) => {
+        if (user.value) user.value.projectsId = user.value.projectsId.filter((p) => p !== project.id)
+        removeProject(project)
+        setToast('info', `Проект ${project.title} был удален`)
+      })
+    }
+  }
+
   return {
-    createProject,
-    updateProject,
-    initProjects,
+    exileUser,
+    WSProject,
     getMembers,
     inviteUser,
+    initProjects,
     acceptInvite,
     ignoreInvite,
-    WSProject,
+    leaveProject,
+    createProject,
+    updateProject,
+    deleteProject,
+    acceptExclusion,
   }
 }

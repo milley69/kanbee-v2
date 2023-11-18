@@ -1,7 +1,7 @@
 <template>
-  <div class="flex gap-4 items-center flex-col md:flex-row md:items-start">
+  <div class="flex gap-4 items-start flex-col md:flex-row md:items-start">
     <lazy-project-head-title :title="title" />
-    <div class="flex justify-center items-center gap-2">
+    <div class="flex justify-center items-start gap-2">
       <lazy-project-head-avatar :title="title" />
     </div>
   </div>

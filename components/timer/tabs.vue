@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs items-center" style="grid-area: 2 / 1 / 3 / 4">
+  <div class="tabs tabs-bordered items-center" style="grid-area: 2 / 1 / 3 / 4">
     <a
       class="tab tab-bordered"
       :class="{ 'tab-active': tab.event === status }"

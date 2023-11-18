@@ -12,14 +12,18 @@ export const useProjectsStore = defineStore('ProjectsPinia', () => {
   const addProjectTitle = async (name: string, isNew = false) => {
     const title = convertHashToPath(name)
     projectsTitles.value.push(title)
-    if (isNew) await createProject(title)
+    if (!isNew) return
+    const project = await createProject(title)
+    if (!project) return
+    addProject(project, false)
+    useRouter().push(`/p${convertHashToPath(project.title)}`)
   }
 
   const addProject = (project: Project, isRefresh?: boolean) => {
     const _id = projects.value.findIndex((p) => p.id === project.id)
     if (_id === -1) {
       projects.value.push(project)
-      addProjectTitle(project.title)
+      if (!projectsTitles.value.includes(project.title)) addProjectTitle(project.title)
     }
     if (isRefresh && _id !== -1) {
       projects.value[_id] = project
@@ -39,6 +43,14 @@ export const useProjectsStore = defineStore('ProjectsPinia', () => {
     return project ? project.adminId : ''
   }
 
+  const removeProject = (project: Project) => {
+    const id = getProjectId(project.title)
+    if (id === -1) return
+    projects.value.splice(id, 1)
+
+    const param = useRoute().params
+    if (param && param['project'] === project.title) useRouter().push('/')
+  }
   const removeProjects = () => {
     projectsTitles.value = []
     projects.value = []
@@ -55,6 +67,7 @@ export const useProjectsStore = defineStore('ProjectsPinia', () => {
     getProject,
     addProject,
     getProjectId,
+    removeProject,
     removeProjects,
     getAdminByName,
     addProjectTitle,

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export type ModalType = 'addMember' | 'create' | 'profile-stat' | ''
+export type ModalType = 'membersDetail' | 'create' | 'profile-stat' | ''
 
 export const useModal = defineStore('ModalPinia', () => {
   const isActive = ref(false)

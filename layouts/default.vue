@@ -1,7 +1,7 @@
 <template>
   <Modals :is-active="isActive">
     <ModalsProfileStat v-if="label === 'profile-stat'" />
-    <ModalsAddMember v-if="label === 'addMember'" />
+    <ModalsMembersDetail v-if="label === 'membersDetail'" />
     <ModalsCreate v-if="label === 'create'" :project-title="projectTitle" :column-title="columnTitle" />
   </Modals>
 

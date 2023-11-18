@@ -33,7 +33,7 @@
 <script setup lang="ts">
 const isOpenProjects = ref(true)
 
-const { addProjectTitle, convertHashToPath } = useProjectsStore()
+const { addProjectTitle } = useProjectsStore()
 
 const newProjectInput = ref<HTMLInputElement | null>(null)
 const newProject = reactive({
@@ -43,7 +43,6 @@ const newProject = reactive({
 
 const addProject = () => {
   addProjectTitle(newProject.name, true)
-  useRouter().push(`/p${convertHashToPath(newProject.name)}`)
   newProject.isOpen = false
 }
 

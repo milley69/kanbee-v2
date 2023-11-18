@@ -1,7 +1,9 @@
 <template>
   <div class="dropdown dropdown-end" v-if="user">
-    <div class="indicator" v-if="user.invites.length">
-      <span class="indicator-item indicator-middle indicator-start badge badge-accent">{{ user.invites.length }}</span>
+    <div class="indicator" v-if="user.invites.length || user.exclusions.length">
+      <span class="indicator-item indicator-middle indicator-start badge badge-accent">{{
+        user.invites.length + user.exclusions.length
+      }}</span>
       <label tabindex="0" class="btn btn-square btn-outline">
         <i class="bx bx-sm bxs-bell"></i>
       </label>
@@ -17,7 +19,14 @@
           <ui-notification-invite :invite="invite" />
         </div>
       </div>
-      <div class="flex p-2 w-full" v-else>
+      <div tabindex="0" v-if="user.exclusions.length">
+        <span class="font-medium"><i class="bx bx-user-x bx-mm bx-fw"></i>Exclusions</span>
+        <div class="divider my-0"></div>
+        <div class="stats shadow mb-2" v-for="exclusion in user.exclusions" :key="user.exclusions.length">
+          <ui-notification-exclusions :exclusion="exclusion" />
+        </div>
+      </div>
+      <div class="flex p-2 w-full" v-if="!user.exclusions.length && !user.invites.length">
         <p class="w-full"><i class="bx bxs-bot bx-sm bx-fw"></i>: No notifications were found</p>
       </div>
     </div>

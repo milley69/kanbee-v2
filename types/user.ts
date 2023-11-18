@@ -14,6 +14,7 @@ export interface User {
   createdProjects: number
   projectsId: number[]
   invites: Invites[]
+  exclusions: string[]
   createdAt: Date
   roles: Roles[]
   provider: Provider | null
@@ -24,9 +25,9 @@ export interface Invites {
   title: string
 }
 
-export enum Roles {
-  USER,
-  ADMIN,
+export const enum Roles {
+  USER = 'USER',
+  ADMIN = 'ADMIN',
 }
 
 export type Provider = 'GOOGLE' | 'GITHUB'

@@ -4,8 +4,8 @@
       <timer-clock />
     </div>
     <div style="grid-area: 1 / 3 / 2 / 4" class="flex justify-center">
-      <button class="btn btn-ghost btn-outline" @click="stop()" v-if="isStart">pause</button>
-      <button class="btn btn-ghost btn-outline" @click="start()" v-else>start</button>
+      <button class="btn btn-ghost uppercase btn-outline" @click="stop()" v-if="isStart">pause</button>
+      <button class="btn btn-ghost uppercase btn-outline" @click="start()" v-else>start</button>
     </div>
     <div style="grid-area: 1 / 4 / 3 / 5" class="flex justify-around flex-col items-center">
       <button class="btn btn-sm btn-ghost btn-circle" @click="reset(true)">

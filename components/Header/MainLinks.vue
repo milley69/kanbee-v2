@@ -6,6 +6,12 @@
         {{ link.title }}
       </nuxt-link>
     </li>
+    <li v-if="isAdmin">
+      <nuxt-link to="/dashboard" activeClass="active">
+        <i class="bx bx-bug bx-mm"></i>
+        Dashboard
+      </nuxt-link>
+    </li>
     <li>
       <a href="#" @click.prevent.stop="isOpen = true">
         <i class="bx bx-timer bx-mm"></i>
@@ -18,6 +24,7 @@
 
 <script lang="ts" setup>
 const { isOpen } = storeToRefs(useTimer())
+const { isAdmin } = storeToRefs(useUser())
 const links = [
   { path: '/', title: 'Inbox', icon: 'bx-home-heart' },
   { path: '/profile', title: 'My Activity', icon: 'bx-popsicle' },

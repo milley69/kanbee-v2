@@ -12,8 +12,12 @@
     </div>
     <div class="avatar placeholder" v-if="getAdminByName(title) === user.id">
       <div>
-        <button class="btn btn-circle btn-neutral w-10 h-10" @click="openModal('addMember', title)" title="Add members">
-          <i class="bx bx-plus bx-mm"></i>
+        <button
+          class="btn btn-circle btn-neutral w-10 h-10"
+          @click="openModal('membersDetail', title)"
+          title="Members detail"
+        >
+          <i class="bx bxs-user-detail bx-sm"></i>
         </button>
       </div>
     </div>
@@ -27,7 +31,7 @@
     <div class="avatar placeholder" v-if="getAdminByName(title) === user.id">
       <div>
         <button class="btn btn-circle btn-neutral w-10 h-10">
-          <i class="bx bx-plus bx-mm"></i>
+          <i class="bx bxs-user-detail bx-sm"></i>
         </button>
       </div>
     </div>

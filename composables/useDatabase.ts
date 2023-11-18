@@ -1,5 +1,4 @@
-import { User } from '~/types'
-
+import type { User } from '@/types'
 export const useDatabase = () => {
   const { $URL } = useNuxtApp()
   const { user, accessToken } = storeToRefs(useUser())
@@ -45,5 +44,16 @@ export const useDatabase = () => {
     return users
   }
 
-  return { updateCycleTimer, changeUsername, searchUsers }
+  const getFullMembers = async (ids: string[]): Promise<User[]> => {
+    const data = await $fetch<User[]>(`${$URL}/user/get-members`, {
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      headers: { Authorization: accessToken.value },
+      body: { ids },
+    })
+    return data
+  }
+
+  return { updateCycleTimer, changeUsername, searchUsers, getFullMembers }
 }
