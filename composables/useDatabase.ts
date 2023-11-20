@@ -22,16 +22,24 @@ export const useDatabase = () => {
       setToast('error', error[0].message)
       return { done: false }
     }
-    // try {
-    //   const { error } = await $supabase.from('profiles').update({ username }).eq('id', user.value.id)
-    //   if (error) throw error
-    //   setToast('success', `Congratulations, your name is now ${username}`)
-    //   return { done: true }
-    // } catch (error) {
-    //   console.log('error: ', error)
-    //   setToast('error', 'Oops, there was an error, try again later.')
-    //   return { done: false }
-    // }
+    try {
+      const _user = user.value
+      _user.username = username
+      const newUser = await $fetch<User>(`${$URL}/user/`, {
+        method: 'PATCH',
+        credentials: 'include',
+        mode: 'cors',
+        headers: { Authorization: accessToken.value },
+        body: { user: _user },
+      })
+      if (!newUser) throw error
+      setToast('success', `Congratulations, your name is now ${username}`)
+      return { done: true }
+    } catch (error) {
+      console.log('error: ', error)
+      setToast('error', 'Oops, there was an error, try again later.')
+      return { done: false }
+    }
   }
 
   const searchUsers = async (emailOrUsername: string) => {

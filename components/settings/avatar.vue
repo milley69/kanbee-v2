@@ -101,14 +101,24 @@ const cropImage = async () => {
   }
 }
 
-const toBlob = async (canvas: any) => {
-  let error = false
-  const form = new FormData()
-  canvas.toBlob(async (blob: Blob) => {
-    form.append('file', blob)
-  }, 'image/png')
-  const res = await updateAvatar(form)
-  if (!res) error = true
+const toBlob = async (canvas: HTMLCanvasElement) => {
+  const formData = new FormData()
+
+  await new Promise<void>((resolve) => {
+    canvas.toBlob((blob: Blob | null) => {
+      if (!blob) return
+
+      const file = new File([blob], 'temp.png', { type: 'image/png' })
+      formData.append('file', file)
+
+      resolve()
+    }, 'image/png')
+  })
+
+  if (!formData.has('file')) return true
+
+  const error = !(await updateAvatar(formData))
+
   return error
 }
 

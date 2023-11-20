@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown dropdown-open">
+  <div class="dropdown">
     <label tabindex="0" class="btn normal-case btn-active btn-ghost">
       <h1 class="font-semibold text-3xl">{{ title }}</h1>
     </label>
