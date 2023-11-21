@@ -25,12 +25,11 @@ import type { Toast } from '@/types'
 
 const { isActive, modalType: label, projectTitle, columnTitle } = storeToRefs(useModal())
 const { isConnect } = storeToRefs(useSocket())
-const { initProjects } = useProjects()
 const { setToast, setToastWithoutDuration, removeToast } = useToast()
 
-onMounted(async () => {
-  await initProjects()
-})
+// onMounted(async () => {
+//   await initProjects()
+// })
 
 const toast = ref<Toast | null>(null)
 watch(

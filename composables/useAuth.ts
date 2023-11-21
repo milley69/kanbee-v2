@@ -7,6 +7,7 @@ export const useAuth = () => {
   const { removeProjects } = useProjectsStore()
   const { $URL } = useNuxtApp()
   const { setToast } = useToast()
+  const { initProjects } = useProjects()
   const { WSProject } = useProjects()
 
   const signUp = async (email: string, password: string, username: string) => {
@@ -86,6 +87,7 @@ export const useAuth = () => {
     if (!data) return
     setUser(data)
     if (isMounted) {
+      initProjects()
       WSProject(data)
     }
   }

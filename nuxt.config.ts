@@ -25,14 +25,28 @@ export default defineNuxtConfig({
         { href: 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css', rel: 'stylesheet' },
         /* PWA */
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/pwa/apple-touch-icon.png' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/pwa/favicon-32x32.png' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/pwa/favicon-16x16.png' },
-        { rel: 'manifest', href: '/pwa/site.webmanifest' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/pwa/ios/32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/pwa/ios/16.png' },
+        { rel: 'manifest', href: '/pwa/manifest.json' },
       ],
       meta: [
         /* PWA */
         { name: 'msapplication-TileColor', content: '#242b33' },
         { name: 'theme-color', content: '#ffffff' },
+        {
+          name: 'description',
+          content: 'Kanbee is a handy collaboration tool that helps you organize projects in the form of boards.',
+        },
+        { property: 'og:title', content: 'Kanbee' },
+        {
+          property: 'og:description',
+          content: 'Kanbee is a handy collaboration tool that helps you organize projects in the form of boards.',
+        },
+        { property: 'og:url', content: 'https://kanbee.milley.uno' },
+        { property: 'og:image', content: '/pwa/ios/128.png' },
+        { property: 'og:site_name', content: 'Kanbee' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:image:alt', content: 'Kanbee' },
       ],
     },
   },
