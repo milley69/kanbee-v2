@@ -1,19 +1,10 @@
 <template>
-  <div>Page: foo</div>
-  <form @submit.prevent="send">
-    <input type="text" v-model="text" class="input-bordered input" />
-    <button class="btn" type="submit">Send</button>
-  </form>
+  <section class="mt-10 mx-2 mb-8 grid lg:grid-cols-2 grid-cols-1">
+    <InboxMain />
+    <InboxQuotes />
+  </section>
 </template>
 
-<script lang="ts" setup>
-const text = ref('')
+<script setup lang="ts"></script>
 
-const { socket } = storeToRefs(useSocket())
-
-const send = () => {
-  if (!socket.value || !text.value.length) return
-  socket.value.emit('server-path', text.value)
-  text.value = ''
-}
-</script>
+<style scoped></style>
