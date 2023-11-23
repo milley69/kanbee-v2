@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-4 group pr-10 w-[300px]">
     <div class="stats stats-vertical shadow overflow-hidden" ref="statsList">
       <div class="stat" v-for="stat in statsItems" :key="stat" v-if="statsItems.length">
-        <div class="stat-title">{{ stats[stat].title }}</div>
+        <div class="stat-title">{{ $t(stats[stat].title) }}</div>
         <div class="stat-value">{{ stats[stat].value }}</div>
         <div class="stat-desc">{{ stats[stat].desc }}</div>
       </div>
@@ -27,8 +27,6 @@
 
 <script setup lang="ts">
 import autoAnimate from '@formkit/auto-animate'
-
-const { user } = storeToRefs(useUser())
 
 const { statsItems, stats } = storeToRefs(useProfile())
 const { initProfile, randomize } = useProfile()

@@ -5,13 +5,15 @@
     </label>
     <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 space-y-2 rounded-box w-52 mt-4">
       <li class="rounded-lg border-accent border">
-        <a @click.prevent="initProjects(true)">Refresh</a>
+        <a @click.prevent="initProjects(true)">{{ $t('projects.refresh') }}</a>
       </li>
       <li class="border-error border rounded-lg" v-if="getAdminByName(title) === user?.id">
-        <a class="text-error hover:text-error" @click.prevent="deleteProject(title)">Delete project</a>
+        <a class="text-error hover:text-error" @click.prevent="deleteProject(title)">{{ $t('projects.delete') }}</a>
       </li>
       <li class="border-error border rounded-lg" v-else>
-        <a class="text-error hover:text-error" @click.prevent="leaveProject(title)">Leave from {{ title }}</a>
+        <a class="text-error hover:text-error" @click.prevent="leaveProject(title)"
+          >{{ $t('projects.leave') }} {{ title }}</a
+        >
       </li>
     </ul>
   </div>

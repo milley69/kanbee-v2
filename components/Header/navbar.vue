@@ -13,6 +13,7 @@
         </div>
         <div class="flex-0 space-x-2">
           <ui-notification />
+          <ui-lang-switcher />
           <ui-theme-switcher />
         </div>
       </nav>

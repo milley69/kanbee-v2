@@ -3,11 +3,11 @@
     <form class="card-body p-0" @submit.prevent="signUpHandler">
       <div class="form-control">
         <label class="label">
-          <span class="label-text">Username</span>
+          <span class="label-text">{{ $t('auth.username') }}</span>
         </label>
         <input
           type="text"
-          placeholder="milley"
+          placeholder="Rick Sanchez"
           v-model="form.username"
           class="input input-bordered"
           :class="{ 'input-error': formError.username }"
@@ -34,7 +34,7 @@
       </div>
       <div class="form-control relative">
         <label class="label">
-          <span class="label-text">Password</span>
+          <span class="label-text">{{ $t('auth.password') }}</span>
         </label>
         <input
           :type="isHidePasswd ? 'text' : 'password'"
@@ -55,7 +55,9 @@
         </span>
       </div>
       <div class="form-control mt-6">
-        <button type="submit" class="btn btn-primary" :class="{ 'btn-disabled': !isSign }">Sign Up</button>
+        <button type="submit" class="btn btn-primary" :class="{ 'btn-disabled': !isSign }">
+          {{ $t('auth.signUp') }}
+        </button>
       </div>
     </form>
   </div>

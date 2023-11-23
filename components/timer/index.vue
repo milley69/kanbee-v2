@@ -15,7 +15,7 @@
           <timer-steps />
         </div>
         <div>
-          <div class="tooltip tooltip-left" data-tip="Close and pause timer">
+          <div class="tooltip tooltip-left" :data-tip="$t('timer.close')">
             <button class="btn btn-sm btn-ghost" @click="close">
               <i class="bx bx-minus"></i>
             </button>

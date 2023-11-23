@@ -64,7 +64,7 @@
     </draggable>
     <button class="btn btn-sm btn-active btn-ghost normal-case font-medium text-xl" @click="createColumn">
       <i class="bx bx-plus bx-mm"></i>
-      Add Column
+      {{ $t('projects.addColumn') }}
     </button>
   </div>
 </template>

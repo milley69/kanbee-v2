@@ -1,9 +1,11 @@
 import type { IStats } from '@/types'
 import { defineStore } from 'pinia'
+import { useI18n } from 'vue-i18n'
 
 export const useProfile = defineStore('ProfilePinia', () => {
   const { user } = storeToRefs(useUser())
   const { getLocale } = useLocales()
+  const { t, te, locale } = useI18n()
 
   const formatted = useDateFormat(user.value?.createdAt, 'DD.MM.YYYY', { locales: getLocale() })
 
@@ -11,14 +13,18 @@ export const useProfile = defineStore('ProfilePinia', () => {
     if (!user.value?.createdAt) return 0
     const diffInTime = new Date().getTime() - new Date(user.value?.createdAt).getTime()
     const diffInDays = Math.round(diffInTime / 8.64e7)
-    return diffInDays > 1 ? `${diffInDays} days` : `${diffInDays} day`
+    if (diffInDays > 1) {
+      return locale.value === 'en' ? `That's ${diffInDays} days` : `Это ${diffInDays} дней`
+    } else {
+      return locale.value === 'ru' ? `Это ${diffInDays} день` : `That's ${diffInDays} day`
+    }
   })
 
   const stats = ref(<IStats[]>[
-    { title: `You've been with us since`, value: formatted.value, desc: `That's ${dayBefore.value}` },
-    { title: `Projects you created`, value: user.value?.createdProjects },
-    { title: 'Count projects', value: user.value?.projectsId.length },
-    { title: 'Cycle Timer', value: user.value?.cycleTimer },
+    { title: 'profile.since', value: formatted.value, desc: dayBefore.value },
+    { title: 'profile.created', value: user.value?.createdProjects },
+    { title: 'profile.count', value: user.value?.projectsId.length },
+    { title: 'profile.cycle', value: user.value?.cycleTimer },
   ])
   const statsItems = ref(<number[]>[])
   const statsItemsHide = ref(<number[]>[0, 1, 2, 3])

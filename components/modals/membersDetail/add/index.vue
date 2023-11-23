@@ -1,9 +1,9 @@
 <template>
   <div class="form-control">
     <label class="label">
-      <span class="label-text">Email or username</span>
+      <span class="label-text">{{ $t('modals.members.emailOrUsername') }}</span>
     </label>
-    <input type="text" v-model="search" placeholder="Search" class="input input-bordered" />
+    <input type="text" v-model="search" :placeholder="$t('actions.search')" class="input input-bordered" />
   </div>
   <div class="flex justify-center items-center gap-4 mt-4" v-if="users.length && !loading">
     <div class="stats shadow text-base-content" v-for="user in users" :key="user.id">
@@ -14,7 +14,7 @@
     <span class="loading loading-ring loading-lg"></span>
   </div>
   <div class="flex justify-center items-center gap-4 mt-4" v-else-if="search.length && !users.length">
-    <span class=""><i class="bx bxs-bot bx-sm bx-fw"></i>: There's no match</span>
+    <span class=""><i class="bx bxs-bot bx-sm bx-fw"></i>: {{ $t('utils.noMatch') }}</span>
   </div>
 </template>
 

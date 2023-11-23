@@ -6,7 +6,7 @@
     <p>
       <i class="bx bx-chevron-down pt-px scale-110 bx-fw" v-if="isOpenProjects"></i>
       <i class="bx bx-chevron-up pt-px scale-110 bx-fw" v-else></i>
-      <span>Projects</span>
+      <span> {{ $t('aside.projects') }}</span>
     </p>
     <button class="btn btn-ghost btn-square btn-sm" @click.stop="handleNewProject">
       <i class="bx bx-plus"></i>

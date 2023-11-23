@@ -3,7 +3,8 @@
     <div class="flex-1">
       <span class="btn btn-ghost normal-case text-xl">Kanbee</span>
     </div>
-    <div class="flex-none">
+    <div class="flex-0 space-x-2">
+      <ui-lang-switcher />
       <ui-theme-switcher />
     </div>
   </div>

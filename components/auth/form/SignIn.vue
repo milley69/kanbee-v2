@@ -19,8 +19,8 @@
       </div>
       <div class="form-control relative">
         <label class="label">
-          <span class="label-text">Password</span>
-          <span class="label-text-alt link link-hover">Forgot Password?</span>
+          <span class="label-text">{{ $t('auth.password') }}</span>
+          <span class="label-text-alt link link-hover">{{ $t('auth.forgotPassword') }}</span>
         </label>
         <input
           :type="isHidePasswd ? 'text' : 'password'"
@@ -43,7 +43,7 @@
       <div class="form-control mt-6">
         <div class="tooltip-bottom" :class="{ tooltip: !isSign }" data-tip="Fill in the fields" v-if="!isLoading">
           <button type="submit" class="btn btn-ghost btn-outline w-full" :class="{ 'btn-disabled': !isSign }">
-            Sign In
+            {{ $t('auth.signIn') }}
           </button>
         </div>
         <div class="tooltip-bottom" :class="{ tooltip: isLoading }" data-tip="Trying to find you in the DB!" v-else>

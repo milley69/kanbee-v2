@@ -1,9 +1,9 @@
 <template>
   <div class="form-control">
     <label class="label">
-      <span class="label-text">Email or username</span>
+      <span class="label-text">{{ $t('modals.members.emailOrUsername') }}</span>
     </label>
-    <input type="text" v-model="search" placeholder="Search" class="input input-bordered" />
+    <input type="text" v-model="search" :placeholder="$t('actions.search')" class="input input-bordered" />
   </div>
   <div
     class="grid grid-cols-2 justify-center items-center gap-4 mt-4"

@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 // import fs from 'fs'
+import { dirname, resolve } from 'node:path'
 // import path from 'path'
+import { fileURLToPath } from 'url'
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
@@ -59,6 +62,13 @@ export default defineNuxtConfig({
   },
   build: {
     transpile: ['@vuepic/vue-datepicker'],
+  },
+  vite: {
+    plugins: [
+      VueI18nVitePlugin({
+        include: [resolve(dirname(fileURLToPath(import.meta.url)), '~/locales/*.json')],
+      }),
+    ],
   },
   extensions: ['.ts', '.vue', '.js'],
   // devServer: {

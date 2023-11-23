@@ -7,18 +7,18 @@
         </div>
       </div>
     </div>
-    <div class="stat-title text-base-content">{{ foundUser.username }} {{ isAmI ? '(You)' : '' }}</div>
+    <div class="stat-title text-base-content">{{ foundUser.username }} {{ isAmI ? `(${$t('utils.you')})` : '' }}</div>
     <div class="stat-desc text-base-content">{{ foundUser.email }}</div>
     <div class="stat-actions">
       <button class="btn btn-sm btn-error" :class="{ invisible: !isAtProject }" :disabled="isAmI" @click="tryToExile">
-        {{ areYouSure ? 'Are you sure?' : 'Exile' }}
+        {{ areYouSure ? $t('utils.areYouSure') : $t('modals.members.exclude') }}
       </button>
     </div>
     <div
       v-if="!isAtProject"
       class="absolute text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%+2rem)] skeleton h-8 rotate-[30deg] bg-error/90 pointer-events-none"
     >
-      <span class="text-error-content text-base leading-8 uppercase">Exiled</span>
+      <span class="text-error-content text-base leading-8 uppercase"> {{ $t('modals.members.exiled') }}</span>
     </div>
   </div>
 </template>

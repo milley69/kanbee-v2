@@ -3,7 +3,7 @@
     <span class="w-10">
       <i class="bx bx-info-circle bx-sm" :class="{ 'bx-tada': isHoverInfo }"></i>
     </span>
-    Help
+    {{ $t('aside.help') }}
   </nuxt-link>
   <div class="dropdown dropdown-top w-full" v-if="user">
     <label tabindex="0" class="btn w-full justify-start">
@@ -15,16 +15,18 @@
     <ul tabindex="0" class="mb-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
       <li>
         <nuxt-link to="/profile" class="justify-between" activeClass="active">
-          Profile
-          <span class="badge">New</span>
+          {{ $t('aside.profile') }}
+          <!-- <span class="badge">New</span> -->
         </nuxt-link>
       </li>
       <li><nuxt-link to="/p" activeClass="active">Temp</nuxt-link></li>
-      <li @click="logOut"><a>Logout</a></li>
+      <li @click="logOut">
+        <a> {{ $t('auth.logout') }}</a>
+      </li>
     </ul>
   </div>
   <button type="button" class="btn w-full justify-start" @click="logOut" v-else>
-    <span class="w-10"><i class="bx bxs-log-out bx-sm"></i></span>Logout
+    <span class="w-10"><i class="bx bxs-log-out bx-sm"></i></span>{{ $t('auth.logout') }}
   </button>
 </template>
 

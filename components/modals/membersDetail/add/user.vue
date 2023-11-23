@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <div class="stat-title text-base-content">{{ foundUser.username }} {{ isAmI ? '(You)' : '' }}</div>
+    <div class="stat-title text-base-content">{{ foundUser.username }} {{ isAmI ? `(${$t('utils.you')})` : '' }}</div>
     <div class="stat-desc text-base-content">{{ foundUser.email }}</div>
     <div class="stat-actions">
       <button
@@ -15,7 +15,7 @@
         :disabled="isInvited || isAmI || isAtProject"
         @click="$emit('invite', foundUser.id)"
       >
-        Invite
+        {{ $t('modals.members.invite') }}
       </button>
     </div>
   </div>

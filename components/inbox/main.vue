@@ -3,15 +3,15 @@
     <div class="flex flex-col text-center w-full mb-10">
       <h1 class="text-2xl font-medium mb-4 tracking-widest uppercase">Kanbee</h1>
       <p class="lg:w-4/5 mx-auto leading-relaxed text-base">
-        Kanbee - это удобный инструмент для совместной работы, позволяющий организовать проекты в виде досок. С помощью
-        Kanbee можно быстро оценить текущий статус работы, узнать, кто чем занимается и на какой стадии находится
-        процесс.
+        {{ $t('inbox.main.description') }}
       </p>
     </div>
     <!--  -->
 
     <div class="flex flex-col text-center w-full">
-      <h1 class="text-2xl font-medium mb-4 tracking-widest">АВТОР</h1>
+      <h1 class="text-2xl font-medium mb-4 uppercase tracking-widest">
+        {{ $t('inbox.main.author') }}
+      </h1>
     </div>
     <!--  -->
     <div class="flex flex-wrap justify-center -m-4">
@@ -22,15 +22,19 @@
           <img
             alt="me"
             class="mask mask-squircle flex-shrink-0 w-48 h-48 object-cover object-center sm:mb-0 mb-4 bg-gray-400"
-            src="https://milley.vercel.app/images/webp/me.webp"
+            src="https://milley.uno/images/webp/me.webp"
           />
           <div class="flex-grow sm:pl-8">
-            <h2 class="font-medium text-lg">Лядов Александр</h2>
-            <h3 class="text-gray-500 mb-3">Frontend Developer</h3>
+            <h2 class="font-medium text-lg">
+              {{ $t('inbox.main.fullName') }}
+            </h2>
+            <h3 class="text-gray-500 mb-3">
+              {{ $t('inbox.main.profession') }}
+            </h3>
             <p class="mb-4">
               <i class="bx bxs-cookie bx-fw"></i>
-              <a href="https://milley.vercel.app" target="_blank" rel="noopener noreferrer" class="link link-hover"
-                >Портфолио
+              <a href="https://milley.uno" target="_blank" rel="noopener noreferrer" class="link link-hover">
+                {{ $t('inbox.main.portfolio') }}
               </a>
             </p>
             <p class="mb-4">
@@ -46,7 +50,8 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="link link-hover"
-                >Поддержать</a
+              >
+                {{ $t('inbox.main.donate') }}</a
               >
             </p>
             <span class="inline-flex gap-2">

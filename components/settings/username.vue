@@ -9,7 +9,9 @@
       v-model.trim="username"
       @keypress.enter="change"
     />
-    <button type="button" class="btn btn-neutral join-item rounded-r-full" @click="change">Change</button>
+    <button type="button" class="btn btn-neutral join-item rounded-r-full" @click="change">
+      {{ $t('actions.change') }}
+    </button>
   </div>
 </template>
 

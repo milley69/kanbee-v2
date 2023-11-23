@@ -1,0 +1,145 @@
+{
+  "aside": {
+    "inbox": "Inbox",
+    "dashboard": "Dashboard",
+    "timer": "Timer",
+    "projects": "Projects",
+    "help": "Help",
+    "profile": "Profile"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "logout": "Logout",
+    "continue": "Continue with",
+    "username": "Username",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "greeting": {
+      "in": {
+        "0": "Welcome back",
+        "1": "Sign in to your account"
+      },
+      "up": {
+        "0": "Get started",
+        "1": "Create a new account"
+      }
+    },
+    "footer": {
+      "in": {
+        "0": "Don't have an account? ",
+        "1": "Sign Up Now"
+      },
+      "up": {
+        "0": "Have an account? ",
+        "1": "Sign In Now"
+      },
+      "0": "By continuing, you agree to Kanbee's",
+      "1": " Terms of Service",
+      "2": " Privacy Policy"
+    }
+  },
+  "inbox": {
+    "main": {
+      "description": "Kanbee is a handy collaboration tool that allows you to organize projects in the form of boards. With Kanbee, you can quickly assess the current status of work, see who is doing what, and what stage the process is at.",
+      "author": "author",
+      "fullName": "Lyadov Alexandr",
+      "profession": "Frontend Developer",
+      "portfolio": "Portfolio",
+      "donate": "Donate"
+    }
+  },
+  "timer": {
+    "tabs": {
+      "break": "Break",
+      "shortBreak": "Short break",
+      "longBreak": "Long break"
+    },
+    "settings": {
+      "audio": "Turn on audible warning"
+    },
+    "close": "Close and pause timer"
+  },
+  "profile": {
+    "since": "You've been with us since",
+    "created": "Projects you created",
+    "count": "Count projects",
+    "cycle": "Timer cycle"
+  },
+  "modals": {
+    "create": {
+      "title": "Title",
+      "labels": "Labels",
+      "deadline": "Deadline"
+    },
+    "members": {
+      "title": "Members detail",
+      "invite": "Invite",
+      "exclude": "Exclude",
+      "exiled": "Exiled",
+      "emailOrUsername": "Email or username"
+    },
+    "profile": "Which stats to display"
+  },
+  "actions": {
+    "change": "Change",
+    "start": "Start",
+    "submit": "Submit",
+    "save": "Save",
+    "stop": "Stop",
+    "pause": "Pause",
+    "search": "Search"
+  },
+  "projects": {
+    "refresh": "Refresh",
+    "delete": "Delete project",
+    "leave": "Leave from ",
+    "addColumn": "Add Column"
+  },
+  "help": {
+    "description": "A small memo for comfortable work in Kanbee",
+    "adminOnly": "Only works for the project creator",
+    "renameColumn": {
+      "title": "Renaming a column",
+      "description": "When you click on the column name, a stroke for editing will appear, saving will be done after you change the focus to something else."
+    },
+    "deletingColumn": {
+      "title": "Deleting a column",
+      "description": {
+        "0": "By following the instructions from ",
+        "1": ", You need to delete the title completely and additionally click on the",
+        "2": "Be careful, because when you delete a column, all the tasks that were in it will be irretrievably deleted."
+      }
+    },
+    "deletingTask": {
+      "title": "Deleting a task",
+      "mouse": "LMB",
+      "description": {
+        "0": "When you select a task by pressing ",
+        "1": ", a stroke will appear and then when you press ",
+        "2": ", the task will be deleted without your confirmation.",
+        "3": "When you select a task by tapping, a stroke will appear in the upper right corner.",
+        "4": ", when you click on it, the task will be deleted without your confirmation."
+      }
+    },
+    "cloningTask": {
+      "title": "Task Cloning",
+      "description": {
+        "0": "When dragging a task, hold down ",
+        "1": ", so the task will be copied.",
+        "2": "Not supported."
+      }
+    }
+  },
+  "utils": {
+    "that": "That's",
+    "day": "day",
+    "days": "days",
+    "noMatch": "There's no match",
+    "areYouSure": "Are you sure?",
+    "you": "You",
+    "or": "Or",
+    "and": "and",
+    "whoa": "whoa?"
+  }
+}

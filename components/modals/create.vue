@@ -3,19 +3,19 @@
   <form class="" @submit.prevent="sendTodo">
     <div class="form-control">
       <label class="label">
-        <span class="label-text">Title</span>
+        <span class="label-text">{{ $t('modals.create.title') }}</span>
       </label>
       <input type="text" v-model="title" @focus="checkTitle" class="input input-bordered" />
     </div>
     <div class="form-control">
       <label class="label">
-        <span class="label-text">Labels</span>
+        <span class="label-text">{{ $t('modals.create.labels') }}</span>
       </label>
       <input type="text" v-model="labels" @focus="checkLabels" class="input input-bordered" />
     </div>
     <div class="form-control">
       <label class="label">
-        <span class="label-text">Deadline</span>
+        <span class="label-text">{{ $t('modals.create.deadline') }}</span>
       </label>
       <!-- <input type="datetime" v-model="date" class="input input-bordered" /> -->
       <VueDatePicker
@@ -30,7 +30,7 @@
       />
     </div>
     <div class="form-control my-4">
-      <button class="btn btn-active" type="submit" :disabled="!title.length">отправить</button>
+      <button class="btn btn-active" type="submit" :disabled="!title.length">{{ $t('actions.submit') }}</button>
     </div>
   </form>
   <!--  -->

@@ -1,66 +1,81 @@
 <template>
   <section class="">
     <div class="prose prose-sm md:prose-base w-full max-w-4xl flex-grow pt-10">
-      <h1>Help</h1>
-      <p>Не большая памятка для комфортной работы в Kanbee</p>
+      <h1>{{ $t('aside.help') }}</h1>
+      <p>{{ $t('help.description') }}</p>
       <ul class="list-none">
         <li>
           <lazy-ui-help-title
-            title="Переименование колонки"
+            :title="$t('help.renameColumn.title')"
             id="rename-column"
             :is-hash="whichHash === '#rename-column'"
           />
-          <i class="block"><code>Работает только у создателя проекта</code></i>
-          <p>
-            При нажатии на название колонки, появиться обводка для редактирования, сохранение будет произведено после
-            того как Вы смените фокус на, что- то другое.
-          </p>
+          <i class="block">
+            <code>{{ $t('help.adminOnly') }}</code>
+          </i>
+
+          <p>{{ $t('help.renameColumn.description') }}</p>
         </li>
         <li>
           <lazy-ui-help-title
-            title="Удаление колонки"
+            :title="$t('help.deletingColumn.title')"
             id="deleting-column"
             :is-hash="whichHash === '#deleting-column'"
           />
-          <i class="block"><code>Работает только у создателя проекта</code></i>
+          <i class="block"
+            ><code>{{ $t('help.adminOnly') }}</code></i
+          >
           <p>
-            Следуя инструкции из <a href="#rename-column">#Переименование колонки</a>, Вам нужно удалить название
-            полностью и дополнительно нажать на
+            {{ $t('help.deletingColumn.description.0') }}
+            <a href="#rename-column">#{{ $t('help.renameColumn.title') }}</a
+            >{{ $t('help.deletingColumn.description.1') }}
             <kbd class="kbd kbd-xs" :class="{ 'text-neutral-content': isDark }">backspace</kbd>. <br />
             <span class="bg-warning/20">
-              <i class="bx bx-error bx-fw"></i> Будьте осторожны ведь при удалении колонки все задачи что были в ней
-              будут безвозвратно удалены.
+              <i class="bx bx-error bx-fw"></i> {{ $t('help.deletingColumn.description.2') }}
             </span>
           </p>
         </li>
         <li>
-          <lazy-ui-help-title title="Удаление задачи" id="deleting-task" :is-hash="whichHash === '#deleting-task'" />
-          <i class="block"><code>Работает только у создателя проекта</code></i>
+          <lazy-ui-help-title
+            :title="$t('help.deletingTask.title')"
+            id="deleting-task"
+            :is-hash="whichHash === '#deleting-task'"
+          />
+          <i class="block"
+            ><code>{{ $t('help.adminOnly') }}</code></i
+          >
           <p>
             <span><i class="bx bx-desktop bx-fw"></i>: </span>
-            При выборе задачи путем нажатия
-            <kbd class="kbd kbd-xs" :class="{ 'text-neutral-content': isDark }">ЛКМ</kbd>, появиться обводка и далее при
-            нажатии <kbd class="kbd kbd-xs" :class="{ 'text-neutral-content': isDark }">backspace</kbd>, задача
-            удалиться без Вашего подтверждения.
+            {{ $t('help.deletingTask.description.0') }}
+            <kbd class="kbd kbd-xs" :class="{ 'text-neutral-content': isDark }">
+              {{ $t('help.deletingTask.mouse') }}</kbd
+            >
+            {{ $t('help.deletingTask.description.1') }}
+            <kbd class="kbd kbd-xs" :class="{ 'text-neutral-content': isDark }">backspace</kbd>
+            {{ $t('help.deletingTask.description.2') }}
           </p>
           <p>
             <span><i class="bx bx-mobile-alt bx-fw"></i>: </span>
-            При выборе задачи путем нажатия, появиться в правом верхнем углу
-            <kbd class="kbd" :class="{ 'text-neutral-content': isDark }">x</kbd>, при нажатии на него, задача удалиться
-            без Вашего подтверждения.
+            {{ $t('help.deletingTask.description.3') }}
+            <kbd class="kbd" :class="{ 'text-neutral-content': isDark }">x</kbd>
+            {{ $t('help.deletingTask.description.4') }}
           </p>
         </li>
         <li>
-          <lazy-ui-help-title title="Клонирование задачи" id="cloning-task" :is-hash="whichHash === '#cloning-task'" />
+          <lazy-ui-help-title
+            :title="$t('help.cloningTask.title')"
+            id="cloning-task"
+            :is-hash="whichHash === '#cloning-task'"
+          />
           <p>
             <span><i class="bx bx-desktop bx-fw"></i>: </span>
-            При перетаскивании задачи удерживайте
-            <kbd class="kbd kbd-xs" :class="{ 'text-neutral-content': isDark }">ALT</kbd>, таким образом задача будет
-            скопирована.
+            {{ $t('help.cloningTask.description.0') }}
+            <kbd class="kbd kbd-xs" :class="{ 'text-neutral-content': isDark }">ALT</kbd>
+            {{ $t('help.cloningTask.description.1') }}
           </p>
           <p>
             <span><i class="bx bx-mobile-alt bx-fw"></i>: </span>
-            Не поддерживается.
+            {{ $t('help.cloningTask.description.2') }}
           </p>
         </li>
       </ul>

@@ -7,7 +7,7 @@
       :key="tab.title"
       @click="changeStatus(tab.event)"
     >
-      {{ tab.title }}
+      {{ $t(tab.title) }}
     </a>
   </div>
 </template>
@@ -25,7 +25,7 @@ interface Tabs {
 
 const tabs: Tabs[] = [
   { title: 'Pomodoro', event: 'pomodoro' },
-  { title: 'Short break', event: 'break' },
-  { title: 'Long break', event: 'longBreak' },
+  { title: 'timer.tabs.shortBreak', event: 'break' },
+  { title: 'timer.tabs.longBreak', event: 'longBreak' },
 ]
 </script>
