@@ -1,22 +1,20 @@
 import type { IStats } from '@/types'
 import { defineStore } from 'pinia'
-import { useI18n } from 'vue-i18n'
 
 export const useProfile = defineStore('ProfilePinia', () => {
   const { user } = storeToRefs(useUser())
-  const { getLocale } = useLocales()
-  const { t, te, locale } = useI18n()
+  const { locale } = useI18n()
 
-  const formatted = useDateFormat(user.value?.createdAt, 'DD.MM.YYYY', { locales: getLocale() })
+  const formatted = useDateFormat(user.value?.createdAt, 'DD.MM.YYYY', { locales: locale.value })
 
   const dayBefore = computed(() => {
     if (!user.value?.createdAt) return 0
     const diffInTime = new Date().getTime() - new Date(user.value?.createdAt).getTime()
     const diffInDays = Math.round(diffInTime / 8.64e7)
     if (diffInDays > 1) {
-      return locale.value === 'en' ? `That's ${diffInDays} days` : `Это ${diffInDays} дней`
+      return locale.value === 'en_US' ? `That's ${diffInDays} days` : `Это ${diffInDays} дней`
     } else {
-      return locale.value === 'ru' ? `Это ${diffInDays} день` : `That's ${diffInDays} day`
+      return locale.value === 'ru_RU' ? `Это ${diffInDays} день` : `That's ${diffInDays} day`
     }
   })
 

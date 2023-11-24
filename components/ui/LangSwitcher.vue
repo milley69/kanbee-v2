@@ -1,8 +1,8 @@
 <template>
-  <transition name="slide-up" mode="out-in" appear>
+  <transition name="slide-up" mode="out-in">
     <button
-      v-if="locale !== 'en'"
-      @click="switchLang('en')"
+      v-if="locale === 'ru_RU'"
+      @click="locale = 'en_US'"
       aria-label="Toggle language"
       type="button"
       class="button_toggle_theme btn btn-square btn-outline"
@@ -11,7 +11,7 @@
     </button>
     <button
       v-else
-      @click="switchLang('ru')"
+      @click="locale = 'ru_RU'"
       type="button"
       aria-label="Toggle language"
       class="button_toggle_theme btn btn-square btn-outline"
@@ -22,14 +22,14 @@
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
 const { locale } = useI18n()
 
-const switchLang = (lg) => {
-  console.log('lg: ', lg)
-  localStorage.lang = lg
-  locale.value = localStorage.lang
-}
+watch(
+  () => locale.value,
+  (locale) => {
+    localStorage.setItem('kanbee-language', locale)
+  }
+)
 </script>
 
 <style scoped>

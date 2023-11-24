@@ -40,14 +40,13 @@
         {{ $t('utils.and') }}
         <span class="tooltip tooltip-bottom" :data-tip="$t('utils.whoa')">
           <a class="underline cursor-pointer">{{ $t('auth.footer.2') }}</a> </span
-        >{{ locale === 'ru' ? ' Kanbee.' : '.' }}
+        >{{ locale !== 'en_US' ? ' Kanbee.' : '.' }}
       </p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 const { signInGithub } = useAuth()
 const isLogin = ref(true)
 const { locale } = useI18n()

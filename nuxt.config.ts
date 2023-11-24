@@ -1,13 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 // import fs from 'fs'
-import { dirname, resolve } from 'node:path'
 // import path from 'path'
-import { fileURLToPath } from 'url'
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@nuxtjs/color-mode', '@formkit/auto-animate/nuxt', '@vueuse/nuxt'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/i18n',
+    '@nuxtjs/color-mode',
+    '@pinia/nuxt',
+    '@formkit/auto-animate/nuxt',
+    '@vueuse/nuxt',
+  ],
   css: ['@/assets/css/tailwind.css'],
   tailwindcss: {
     configPath: '@/tailwind.config.ts',
@@ -21,6 +25,7 @@ export default defineNuxtConfig({
     dataValue: 'theme',
     storageKey: 'kanbee-color-mode',
   },
+  i18n: { vueI18n: '@/i18n.config.ts' },
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
@@ -62,13 +67,6 @@ export default defineNuxtConfig({
   },
   build: {
     transpile: ['@vuepic/vue-datepicker'],
-  },
-  vite: {
-    plugins: [
-      VueI18nVitePlugin({
-        include: [resolve(dirname(fileURLToPath(import.meta.url)), '~/locales/*.json')],
-      }),
-    ],
   },
   extensions: ['.ts', '.vue', '.js'],
   // devServer: {
